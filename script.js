@@ -19,8 +19,20 @@ function check(){
         }
     }
 
+
+    let check = false;
     for(let i = 0; i<5; i++){
-        
+        if(document.getElementById('R' + i.toString()).checked && !check){
+            check = true;
+        }else if(document.getElementById('R' + i.toString()).checked && check){
+            fail = true;
+            responce += 'Вы выбрали больше одного значения R';
+        }
+    }
+
+    if(!check){
+        fail = true;
+        responce += 'Выберите R';
     }
 
     if(!choose) {
@@ -45,6 +57,16 @@ function check(){
         }
     }
 
+    if (fail){
+        alert(responce);
+        return false;
+    } return true;
+}
 
-
+function ask() {
+    if(check())
+    {
+        // jQuery("#resultTable tr").remove();
+        // jQuery.get('check.php', {'X':x, 'Y':y, 'R':r}, function (data) {document.getElementById('resultTable').innerHTML+=data;});
+    }
 }
