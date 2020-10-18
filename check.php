@@ -18,9 +18,10 @@ date_default_timezone_set('Europe/Moscow');
 if (!is_numeric(str_replace(",",".", $_POST["X"])) ||
     !is_numeric(str_replace(",",".", $_POST["Y"])) ||
     !is_numeric(str_replace(",",".", $_POST["R"])) ||
-    (strlen($_POST["R"])>9) &&
-     strlen($_POST["Y"])>9) &&
-     strlen($_POST["X"])>9))
+    ((strlen($_POST["R"])>9) &&
+     (strlen($_POST["Y"])>9) &&
+     (strlen($_POST["X"])>9))
+    )
 {
     http_response_code(400);
     exit;
