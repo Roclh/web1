@@ -1,13 +1,5 @@
 let x,y,r, responce = '';
 
-function pressX(id){
-    x = document.getElementById(id).value;
-}
-
-function pressR(id){
-    r = document.getElementById(id).value;
-}
-
 function check(){
     let choose = false;
     let fail = false;
@@ -15,6 +7,7 @@ function check(){
     for(let i = 0; i<9; i++){
         if(document.getElementById('X' + i.toString()).checked){
             choose = true;
+            x = document.getElementById('X' + i.toString()).value;
             break;
         }
     }
@@ -24,15 +17,17 @@ function check(){
     for(let i = 0; i<5; i++){
         if(document.getElementById('R' + i.toString()).checked && !check){
             check = true;
+            r = document.getElementById('R'+i.toString()).value;
         }else if(document.getElementById('R' + i.toString()).checked && check){
             fail = true;
-            responce += 'Вы выбрали больше одного значения R';
+            responce += 'Вы выбрали больше одного значения R \n';
+            break;
         }
     }
 
     if(!check){
         fail = true;
-        responce += 'Выберите R';
+        responce += 'Выберите R \n';
     }
 
     if(!choose) {
@@ -51,7 +46,7 @@ function check(){
         if(!/^(-?\d+)([,.]\d+)?$/.test(y)){
             responce += 'Некорректный ввод Y \n';
             fail = true;
-        }else if( y<= -5 || y >= 3){
+        }else if( y<= -3 || y >= 5){
             responce += 'Y вне диапозона \n';
             fail = true;
         }
@@ -59,6 +54,7 @@ function check(){
 
     if (fail){
         alert(responce);
+        responce = '';
         return false;
     } return true;
 }
@@ -66,7 +62,7 @@ function check(){
 function ask() {
     if(check())
     {
-        // jQuery("#resultTable tr").remove();
-        // jQuery.get('check.php', {'X':x, 'Y':y, 'R':r}, function (data) {document.getElementById('resultTable').innerHTML+=data;});
+        jQuery("#resultTable tr").remove();
+        jQuery.get('check.php', {'X':x, 'Y':y, 'R':r}, function (data) {document.getElementById('resultTable').innerHTML+=data;});
     }
 }
