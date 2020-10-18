@@ -63,6 +63,6 @@ function ask() {
     if(check())
     {
         jQuery("#resultTable tr").remove();
-        jQuery.get('check.php', {'X':x, 'Y':y, 'R':r}, function (data) {document.getElementById('resultTable').innerHTML+=data;});
+        jQuery.post('check.php', {'X':x, 'Y':y, 'R':r}, function (data) {document.getElementById('resultTable').innerHTML+=data;});
     }
 }
